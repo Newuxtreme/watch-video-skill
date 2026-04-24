@@ -4,6 +4,14 @@ A Claude skill that lets Claude "watch" videos by extracting a time-synced trans
 
 Works with any Claude surface that supports the skill format — **Claude Code**, **Claude Desktop**, and apps built on the **Claude Agent SDK**.
 
+## Watch the tutorial
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=U10NUi4FqnU">
+    <img src="https://img.youtube.com/vi/U10NUi4FqnU/maxresdefault.jpg" alt="Watch the tutorial on YouTube" width="720" />
+  </a>
+</p>
+
 ## What it does
 
 Claude models can see images but can't stream video. This skill fakes video comprehension:
