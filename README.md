@@ -17,11 +17,11 @@ Works with YouTube URLs and local video files.
 
 ## Use cases
 
-**1.** If you don't understand anything, you can make Claude watch a video and then plan from there on out; Claude Code will have a much clearer understanding. I saw a custom extension being built for downloading school courses and started white-coding Claude on that, and it's doing a really, REALLY good job. Hint hint, wink wink.
+**1.** If you don't understand anything, you can make Claude watch a video and then plan from there on out; Claude Code will have a much clearer understanding. I saw a custom extension being built for downloading courses and started vibe-coding Claude on that, and it's doing a really, REALLY good job! ;)
 
 ![Use case 1 — screenshot heavily blurred for privacy.](docs/images/use-case-1-onboarding.jpg)
 
-**2.** My coach was giving me screenshots and walking me through a video on how to do a DM funnel better. In trying to make Claude learn it, it was much easier for it to just watch the whole video, including the screenshots of the conversations that were being had. This gave it a real, live example of how DM conversations go.
+**2.** Someone was giving me screenshots and walking me through a video on how to do a funnel better. In trying to make Claude learn it, it was much easier for it to just watch the whole video, including the screenshots of the conversations that were being had. This gave it a real, live example of how DM conversations go.
 
 ![Use case 2 — screenshot heavily blurred for privacy.](docs/images/use-case-2-tutorial.jpg)
 
