@@ -17,23 +17,25 @@ Works with YouTube URLs and local video files.
 
 ## Use cases
 
-**1. Onboarding Claude to a new project or tool.** Before starting work on something Claude hasn't seen before — an unfamiliar codebase, a niche CLI tool, a custom extension — point it at one or two walkthrough videos of the thing in action. Claude sees what the tool does, what the output looks like, and what the workflow is, then plans from a much clearer starting point instead of guessing from docs alone.
+**1.** If you don't understand anything, you can make Claude watch a video and then plan from there on out; Claude Code will have a much clearer understanding. I saw a custom extension being built for downloading school courses and started white-coding Claude on that, and it's doing a really, REALLY good job. Hint hint, wink wink.
 
-![Use case 1 — onboarding Claude to an unfamiliar tool by showing it a walkthrough video of the UI and output. Screenshot heavily blurred for privacy.](docs/images/use-case-1-onboarding.jpg)
+![Use case 1 — screenshot heavily blurred for privacy.](docs/images/use-case-1-onboarding.jpg)
 
-**2. Learning from coaching / tutorial videos.** When someone walks you through a workflow on video — screen recording, narration, screenshots of real conversations or real data — Claude can absorb the whole thing end-to-end in one pass. Screenshots, spoken reasoning, and the transitions between steps all land in the same context. Much tighter than pasting a transcript plus a few images separately.
+**2.** My coach was giving me screenshots and walking me through a video on how to do a DM funnel better. In trying to make Claude learn it, it was much easier for it to just watch the whole video, including the screenshots of the conversations that were being had. This gave it a real, live example of how DM conversations go.
 
-![Use case 2 — Claude watching a coaching video that includes real DM conversation screenshots, absorbing the workflow and real examples end-to-end. Screenshot heavily blurred for privacy.](docs/images/use-case-2-tutorial.jpg)
+![Use case 2 — screenshot heavily blurred for privacy.](docs/images/use-case-2-tutorial.jpg)
 
-**3. Show, don't tell — for content generation.** Building a content-generation tool (e.g. a short-form clip generator, a thumbnail skill) and the first attempt doesn't match your vision? Show Claude a single "this is what the perfect output looks like" video. It sees the pacing, cuts, text placement, music cues, everything — and the next iteration tracks much closer to the target.
+**3.** I'm creating my own Opus Clip Claude Code skill. The difference between the first example that Claude Code made versus the final example it produced is significant, because I was able to show it a demo of what my perfect reel actually looks like.
 
 <p align="center">
-  <img src="docs/images/use-case-3-reel-a.jpg" alt="Use case 3a — example reel frame: mic close-up with bold white + accent green on-screen text" width="45%" />
+  <img src="docs/images/use-case-3-reel-a.jpg" alt="Use case 3a — example reel frame" width="45%" />
   &nbsp;&nbsp;
-  <img src="docs/images/use-case-3-reel-b.jpg" alt="Use case 3b — example reel frame: tight close-up with all-caps text overlay" width="45%" />
+  <img src="docs/images/use-case-3-reel-b.jpg" alt="Use case 3b — example reel frame" width="45%" />
 </p>
 
-**4. Style cloning from your favorite creators.** Have Claude watch two or three videos from a YouTuber/editor whose style you want to match. It picks up the cadence, cut timing, overlay patterns, and on-screen text style. Paired with a programmatic video editor like [Remotion](https://www.remotion.dev/) or Hyperframes, Claude can then replicate the style directly in code — since it has the timestamps and what was on screen at each beat, it can reproduce the pattern.
+**4.** If you like a certain YouTuber's style of editing videos, you can make Claude Code watch two or three of their videos to understand their editing style!
+
+Now, with the new video editing tools like Remotion and Hyperframes, you can actually edit your entire videos through Claude Code in exactly that manner. Since it can see what is on screen and understand how it works along with the timestamps, it can replicate that specific style for you.
 
 ## Install
 
