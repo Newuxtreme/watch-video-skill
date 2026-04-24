@@ -1,6 +1,8 @@
 # watch-video skill
 
-A Claude Code skill that lets Claude "watch" videos by extracting a time-synced transcript plus still frames, then reading them together to produce structured notes.
+A Claude skill that lets Claude "watch" videos by extracting a time-synced transcript plus still frames, then reading them together to produce structured notes.
+
+Works with any Claude surface that supports the skill format — **Claude Code**, **Claude Desktop**, and apps built on the **Claude Agent SDK**.
 
 ## What it does
 
@@ -13,17 +15,29 @@ Claude models can see images but can't stream video. This skill fakes video comp
 
 Works with YouTube URLs and local video files.
 
+## Use cases
+
+**1. Onboarding Claude to a new project or tool.** Before starting work on something Claude hasn't seen before — an unfamiliar codebase, a niche CLI tool, a custom extension — point it at one or two walkthrough videos of the thing in action. Claude sees what the tool does, what the output looks like, and what the workflow is, then plans from a much clearer starting point instead of guessing from docs alone.
+
+**2. Learning from coaching / tutorial videos.** When someone walks you through a workflow on video — screen recording, narration, screenshots of real conversations or real data — Claude can absorb the whole thing end-to-end in one pass. Screenshots, spoken reasoning, and the transitions between steps all land in the same context. Much tighter than pasting a transcript plus a few images separately.
+
+**3. Show, don't tell — for content generation.** Building a content-generation tool (e.g. a short-form clip generator, a thumbnail skill) and the first attempt doesn't match your vision? Show Claude a single "this is what the perfect output looks like" video. It sees the pacing, cuts, text placement, music cues, everything — and the next iteration tracks much closer to the target.
+
+**4. Style cloning from your favorite creators.** Have Claude watch two or three videos from a YouTuber/editor whose style you want to match. It picks up the cadence, cut timing, overlay patterns, and on-screen text style. Paired with a programmatic video editor like [Remotion](https://www.remotion.dev/) or Hyperframes, Claude can then replicate the style directly in code — since it has the timestamps and what was on screen at each beat, it can reproduce the pattern.
+
 ## Install
 
 Clone into your Claude skills folder:
 
 ```bash
 # macOS / Linux
-git clone https://github.com/<your-username>/watch-video-skill.git ~/.claude/skills/watch-video
+git clone https://github.com/Newuxtreme/watch-video-skill.git ~/.claude/skills/watch-video
 
 # Windows
-git clone https://github.com/<your-username>/watch-video-skill.git %USERPROFILE%\.claude\skills\watch-video
+git clone https://github.com/Newuxtreme/watch-video-skill.git %USERPROFILE%\.claude\skills\watch-video
 ```
+
+For Claude Desktop or Claude Agent SDK apps, clone into whatever folder that environment loads skills from.
 
 ### Dependencies
 
