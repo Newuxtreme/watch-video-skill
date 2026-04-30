@@ -16,14 +16,16 @@ Works with any Claude surface that supports the skill format — **Claude Code**
 
 ## What it does
 
-Claude models can see images but can't stream video. This skill fakes video comprehension:
+Claude can see pictures. It cannot watch a video on its own. This skill fixes that.
 
-1. Pulls a transcript — YouTube captions first, [Groq Whisper API](https://console.groq.com/) (or OpenAI Whisper) as the fallback for videos with no captions.
-2. Extracts still frames at an **auto-scaled** rate based on video duration — short videos get dense coverage, long videos get sparse coverage, hard-capped at 100 frames / 2 fps so token cost stays bounded.
-3. Aligns each frame with the spoken text at that timestamp.
-4. Claude reads frames + transcript and writes a structured markdown notes file (one-line summary, TL;DR, timestamped timeline, key quotes, visual notes).
+Here is how it works:
 
-Works with YouTube URLs, every other site `yt-dlp` supports (Vimeo, TikTok, X, Twitch clips, Loom, Instagram, etc.), and local video files (`.mp4`, `.mov`, `.mkv`, `.webm`, `.avi`, etc.).
+1. It pulls the transcript. If the video has captions, it uses those. If it does not, it sends the audio to Whisper. Groq is the default and OpenAI is the backup.
+2. It pulls still frames from the video. Short videos get more frames, long videos get fewer. The cap is 100 frames so the token cost stays low.
+3. It matches each frame to the words said at that moment.
+4. Claude reads the frames and the transcript together. Then it writes a clean notes file with a one line summary, a TL;DR, a timeline, key quotes, and visual notes.
+
+It works on YouTube and on every other site yt-dlp supports (Vimeo, TikTok, X, Twitch, Loom, Instagram). It also works on local video files (mp4, mov, mkv, webm, avi).
 
 ## Use cases
 
@@ -49,22 +51,25 @@ Now, with the new video editing tools like Remotion and Hyperframes, you can act
 
 ## What's new in v2
 
-The pipeline that does the actual download / frame extraction / transcription was rewritten in v2 by replacing our original local extractor with the engine from [bradautomates/claude-video](https://github.com/bradautomates/claude-video) (MIT). Big upgrades:
+I swapped the engine in v2. The old version used a local script I wrote. The new version uses the engine from [bradautomates/claude-video](https://github.com/bradautomates/claude-video) (MIT). It is a big step up.
 
-- **Auto-scaled frame budget** — picks a sensible frame count based on duration (≤30s → ~30 frames; 1–3min → ~60; 3–10min → ~80; >10min → 100 sparse). No more hand-tuning `--interval`.
-- **Whisper API fallback (Groq or OpenAI)** instead of the old local `openai-whisper` install — cloud-fast transcription, no Python pip pain, works on every platform without compiled deps.
-- **Focused mode (`--start`/`--end`)** — zoom into one section of a long video at higher frame density. Far more useful than a sparse scan when the user asks "what happens at 2:30?".
-- **Hard token-cost caps** — 100 frames / 2 fps maximum, so a 60-minute video doesn't accidentally burn 50k tokens of frames.
-- **Pure stdlib HTTP** — no `pip install groq` or `pip install openai` needed for the API calls.
+Here is what changed:
 
-### What this skill adds beyond bradautomates/claude-video
+- **Frames are auto scaled.** The script picks how many frames to grab based on the video length. A 30 second video gets about 30 frames. A 10 minute video gets about 80. You do not set the interval by hand anymore.
+- **Whisper now runs in the cloud.** The old version used the local `openai-whisper` package, which was slow and a pain to install. The new version sends the audio to the Groq API or the OpenAI API. It is faster and cheaper. It works on any machine that has Python.
+- **Focused mode.** You can zoom into one part of a long video. Use `--start` and `--end` to pick a window. The script packs more frames into that window. This is useful when the user asks about one specific moment.
+- **Hard caps on cost.** The script will never grab more than 100 frames or run faster than 2 fps. A long video will not blow up your token bill.
 
-- **Slash-command-only invocation guard** — Brad's skill auto-fires on any video URL or "watch this" phrasing, which can accidentally trigger heavy pipelines you didn't ask for. This skill ONLY fires on the literal `/watch-video` slash command. (You can switch back to auto-trigger behavior by editing the `description:` line in [SKILL.md](SKILL.md) — see the note in that file.)
-- **Structured persistent notes file** — Brad's skill answers the user's question in chat. This skill always writes a Title / TL;DR / Timeline / Key quotes / Visual notes markdown file you can come back to later, link from other notes, or feed into another agent.
-- **Mandatory cleanup workflow** — explicit, opinionated cleanup of the temp work dir after the `.md` is written.
-- **Full sampling guidance** — opinionated rules for which frames to read for short / medium / long videos so Claude doesn't brute-force every frame into context.
+## What this skill adds beyond bradautomates/claude-video
 
-If you want the pure Brad pipeline without the wrapper, install [bradautomates/claude-video](https://github.com/bradautomates/claude-video) instead — it's excellent.
+This skill takes Brad's engine and adds four things on top.
+
+- **Slash command only.** Brad's skill fires on any video URL or any phrase like "watch this video." That can burn tokens on long videos you did not mean to watch. This skill only fires when you type `/watch-video`. If you want the old auto trigger back, edit the `description:` line in [SKILL.md](SKILL.md). There is a note in that file that walks you through it.
+- **Notes file you can keep.** Brad's skill answers the user in chat and that is it. This skill writes a real markdown file with a Title, a TL;DR, a Timeline, Key quotes, and Visual notes. You can read it later, link to it from other notes, or feed it into another agent.
+- **Cleanup is built in.** When the script writes the notes file, it wipes the temp folder. No leftover videos or frames cluttering up your disk.
+- **Frame sampling guide.** This skill tells Claude which frames to look at, based on how long the video is. Short videos get every frame read. Medium videos get sampled every five seconds. Long videos get sampled every ten seconds. Claude does not brute force every single frame into the context window.
+
+If you want the pure Brad pipeline with no wrapper on top, install [bradautomates/claude-video](https://github.com/bradautomates/claude-video). It is excellent.
 
 ## Install
 
