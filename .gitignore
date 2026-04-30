@@ -27,8 +27,18 @@ Thumbs.db
 *.srt
 *.vtt
 *.m4a
+*.mp3
 manifest.json
 _work/
 frames/
 out/
 output/
+watch-*/
+
+# Secrets — NEVER commit
+.env
+.env.*
+*.key
+*.pem
+secrets/
+.config/
